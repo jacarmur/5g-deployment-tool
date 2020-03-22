@@ -1,5 +1,5 @@
+close (map)
 clear all
-close all
 
 %% Configuration
 
@@ -53,7 +53,7 @@ for rx_index = 1:NUMBER_OF_RX
     variation2 = (rand()-0.5)*0.01;
     rx_lat = (lat_max + lat_min)/2 + variation1;
     rx_lon = (lon_max + lon_min)/2 + variation2;
-    receivers(rx_index) = rxsite("Name","Small cell receiver", ...
+    receivers(rx_index) = rxsite("Name","Receiver "+rx_index, ...
         "Latitude",rx_lat, ...
         "Longitude",rx_lon, ...
         "AntennaHeight",1);
