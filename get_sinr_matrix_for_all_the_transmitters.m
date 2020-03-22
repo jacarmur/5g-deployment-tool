@@ -49,10 +49,15 @@ for rxInd = 1:validated_params.numRxs
         sigSourceFq = transmitter_frequencies(sigSourceInd);
         intSourceInd = (intSourceFqs == sigSourceFq);
         intSourcePowers = intSourcePowers(intSourceInd);
-        interferencePower = sum(intSourcePowers);
+        intSourcePowers = 10.^(intSourcePowers/10);
+        interferencePower = sum(intSourcePowers)+ 10^(validated_params.noisePower/10);
+        interferencePower = 10*log10(interferencePower);
 
         % Compute SINR in dB
-        receiver_sinr = sigSourcePower / (interferencePower + validated_params.noisePower);
+        receiver_sinr = sigSourcePower - interferencePower;
+        if receiver_sinr <= 0
+            receiver_sinr = 1;
+        end
         receiver_sinr_db = 10*log10(receiver_sinr); % Convert to dB
 
         % Assign output

@@ -1,4 +1,4 @@
-function [transmitters] = get_transmitters_from_cells(selected_phone_cells, frequency)
+function [transmitters] = get_transmitters_from_cells(selected_phone_cells, frequency, power, number_of_channels)
 cells_index = 1;
 
 for i = 1:length(selected_phone_cells)
@@ -25,12 +25,12 @@ numTx = length(selected_phone_cells_candidates);
 for i = 1:numTx
         lat = selected_phone_cells_candidates(i).lat;
         lon = selected_phone_cells_candidates(i).lon;
-        channel = randi(20)-1;
+        channel = randi(number_of_channels)-1;
         transmitters(i) = txsite("Name","Transmitter "+i, ...
         "Latitude",lat, ...
         "Longitude",lon, ...
         "AntennaHeight",10, ...
-        "TransmitterPower",5, ...
+        "TransmitterPower",power, ...
         "TransmitterFrequency",frequency('3')+channel*20e6);
 end
 end
