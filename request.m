@@ -6,6 +6,8 @@ clear all
 DOWNLOAD_MAP = false;
 FILTER_CELLS_BY_COMPANY = true;
 NUMBER_OF_RX = 5;
+TX_POWER_IN_WATTS = 20;
+NUMBER_OF_CHANNELS = 5;
 
 %% Frequencies and bands
 
@@ -41,7 +43,7 @@ end
 
 %% Transmitters generation
 
-transmitters = get_transmitters_from_cells(selected_phone_cells, frequency);
+transmitters = get_transmitters_from_cells(selected_phone_cells, frequency, TX_POWER_IN_WATTS, NUMBER_OF_CHANNELS);
 for i = 1:length(transmitters)
     show(transmitters(i));
 end
