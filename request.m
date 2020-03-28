@@ -1,12 +1,13 @@
-close (map)
+%close (map)
 clear all
+close all
 
 %% Configuration
 
 DOWNLOAD_MAP = false;
 FILTER_CELLS_BY_COMPANY = true;
 NUMBER_OF_RX = 5;
-TX_POWER_IN_WATTS = 20;
+TX_POWER_IN_WATTS = 15;
 NUMBER_OF_CHANNELS = 5;
 
 %% Frequencies and bands
