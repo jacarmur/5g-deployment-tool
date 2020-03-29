@@ -25,13 +25,15 @@ lon_min = -3.6097;
 lat_max = 37.1597;
 lon_max = -3.5875;
 
-bbox_map = coordinates_to_string(lon_min, lat_min, lon_max, lat_max);
+coordinates_bbox = location_bbox(lat_min, lat_max, lon_min, lon_max);
+
+bbox_map = coordinates_bbox.get_maps_bbox_string();
 if (DOWNLOAD_MAP)
     download_building_from_openstreetmap(bbox_map);
 end
 map = siteviewer('Buildings', 'downloaded_map2.osm');
 
-bbox_cells = coordinates_to_string(lat_min, lon_min, lat_max, lon_max);
+bbox_cells = coordinates_bbox.get_cells_bbox_string();
 phone_cells = get_cells_from_opensignal(bbox_cells);
 
 %% Filter cells if needed
@@ -63,6 +65,8 @@ for rx_index = 1:NUMBER_OF_RX
 
     show(receivers(rx_index));
 end
+sinr_map = calculate_sinr_values_map(transmitters, coordinates_bbox);
+plot_values_map(sinr_map);
 sinr_matrix = get_sinr_matrix_for_all_the_transmitters(receivers, transmitters);
 power_matrix = get_power_matrix_for_all_the_transmitters(receivers, transmitters);
 
