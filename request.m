@@ -1,4 +1,3 @@
-%close (map)
 clear all
 close all
 
@@ -9,6 +8,7 @@ FILTER_CELLS_BY_COMPANY = true;
 NUMBER_OF_RX = 5;
 TX_POWER_IN_WATTS = 15;
 NUMBER_OF_CHANNELS = 5;
+best_sinr_points = 9e9;
 
 %% Frequencies and bands
 
@@ -25,13 +25,15 @@ lon_min = -3.6097;
 lat_max = 37.1597;
 lon_max = -3.5875;
 
-bbox_map = coordinates_to_string(lon_min, lat_min, lon_max, lat_max);
+coordinates_bbox = location_bbox(lat_min, lat_max, lon_min, lon_max);
+
+bbox_map = coordinates_bbox.get_maps_bbox_string();
 if (DOWNLOAD_MAP)
     download_building_from_openstreetmap(bbox_map);
 end
 map = siteviewer('Buildings', 'downloaded_map2.osm');
 
-bbox_cells = coordinates_to_string(lat_min, lon_min, lat_max, lon_max);
+bbox_cells = coordinates_bbox.get_cells_bbox_string();
 phone_cells = get_cells_from_opensignal(bbox_cells);
 
 %% Filter cells if needed
@@ -44,27 +46,43 @@ end
 
 %% Transmitters generation
 
-transmitters = get_transmitters_from_cells(selected_phone_cells, frequency, TX_POWER_IN_WATTS, NUMBER_OF_CHANNELS);
-for i = 1:length(transmitters)
-    show(transmitters(i));
-end
+for offset=0:10:40
+transmitters = get_transmitters_from_cells(selected_phone_cells, frequency, TX_POWER_IN_WATTS, NUMBER_OF_CHANNELS, offset);
+% for i = 1:length(transmitters)
+%     show(transmitters(i));
+% end
 
 %% Rx 
 
-for rx_index = 1:NUMBER_OF_RX
-    variation1 = (rand()-0.5)*0.01;
-    variation2 = (rand()-0.5)*0.01;
-    rx_lat = (lat_max + lat_min)/2 + variation1;
-    rx_lon = (lon_max + lon_min)/2 + variation2;
-    receivers(rx_index) = rxsite("Name","Receiver "+rx_index, ...
-        "Latitude",rx_lat, ...
-        "Longitude",rx_lon, ...
-        "AntennaHeight",1);
+% for rx_index = 1:NUMBER_OF_RX
+%     variation1 = (rand()-0.5)*0.01;
+%     variation2 = (rand()-0.5)*0.01;
+%     rx_lat = (lat_max + lat_min)/2 + variation1;
+%     rx_lon = (lon_max + lon_min)/2 + variation2;
+%     receivers(rx_index) = rxsite("Name","Receiver "+rx_index, ...
+%         "Latitude",rx_lat, ...
+%         "Longitude",rx_lon, ...
+%         "AntennaHeight",1);
+% 
+%     show(receivers(rx_index));
+% end
+[data_latitudes, data_longitudes, grid_size, sinr_data] = calculate_sinr_values_map(transmitters, coordinates_bbox);
+current_sinr_points = length(find(sinr_data<5));
 
-    show(receivers(rx_index));
+    if current_sinr_points < best_sinr_points
+        best_data_latitudes = data_latitudes;
+        best_data_longitudes = data_longitudes;
+        best_grid_size = grid_size;
+        best_sinr_data = sinr_data;
+        best_sinr_points = current_sinr_points;
+    end
 end
-sinr_matrix = get_sinr_matrix_for_all_the_transmitters(receivers, transmitters);
-power_matrix = get_power_matrix_for_all_the_transmitters(receivers, transmitters);
+plot_values_map(transmitters, best_data_latitudes, best_data_longitudes, best_grid_size, best_sinr_data);
+
+%plot_values_map(transmitters, datalats, datalons, gridSize, data);
+
+%sinr_matrix = get_sinr_matrix_for_all_the_transmitters(receivers, transmitters);
+%power_matrix = get_power_matrix_for_all_the_transmitters(receivers, transmitters);
 
 %% TODO LIST
 % Asignacion de frecuencias segun tecnologia
