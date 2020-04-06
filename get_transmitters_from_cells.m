@@ -1,4 +1,4 @@
-function [transmitters] = get_transmitters_from_cells(selected_phone_cells, frequencies, power, number_of_channels)
+function [transmitters] = get_transmitters_from_cells(selected_phone_cells, frequencies, power, number_of_channels, offset)
 frequency = frequencies('3');
 antennaElement = get_patch_antenna_element(frequency);
 
@@ -25,7 +25,7 @@ for i = 1:length(selected_phone_cells)
 end
 
 numTx = length(selected_phone_cells_candidates);
-cell_sector_angles = [30 150 270];
+cell_sector_angles = [30 150 270] + offset;
 for i = 1:numTx
     cell_num = 1;
     for cell_angle = cell_sector_angles

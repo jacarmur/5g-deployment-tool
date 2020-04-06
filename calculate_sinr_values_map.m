@@ -1,197 +1,115 @@
-function [datalats, datalons, data] = calculate_sinr_values_map(transmitters, coordinates_bbox, varargin)
+function [data_lats, data_lons, gridSize, sinr_data] = calculate_sinr_values_map(transmitters, coordinates_bbox, varargin)
 
-% Validate site
-validateattributes(transmitters,{'txsite'},{'nonempty'},'sinr','',1);
+validateattributes(transmitters, {'txsite'}, {'nonempty'}, 'sinr', '', 1);
 
-% Add parameters
-p = inputParser;
-if mod(numel(varargin),2) % Odd number of inputs
-    % Validator function is necessary for inputParser to allow string
-    % option instead of treating it like parameter name
-    p.addOptional('PropagationModel', [], @(x)ischar(x)||isstring(x)||isa(x,'rfprop.PropagationModel'));
-else
-    p.addParameter('PropagationModel', []);
-end
-p.addParameter('SignalSource', 'strongest');
-p.addParameter('Values', -5:20);
-p.addParameter('Resolution', 'auto');
-p.addParameter('ReceiverGain', 2.1);
-p.addParameter('ReceiverAntennaHeight', 1);
-p.addParameter('ReceiverNoisePower', -107);
-p.addParameter('Animation', '');
-p.addParameter('MaxRange', []);
-p.addParameter('Colormap', 'jet');
-p.addParameter('ColorLimits', []);
-p.addParameter('Transparency', 0.4);
-p.addParameter('ShowLegend', true);
-p.addParameter('ReceiverLocationsLayout', []);
-p.addParameter('MaxImageResolutionFactor', 5);
-p.addParameter('RadialResolutionFactor', 2);
-p.addParameter('Map', []);
-p.parse(varargin{:});
+input_parameters = inputParser;
+input_parameters = validate_sinr_values_parameters(input_parameters, varargin{:});
 
-% Get Site Viewer and validate web graphics
-viewer = rfprop.internal.Validators.validateMap(p, 'sinr');
-viewer.validateWebGraphicsSupport;
-isViewerInitiallyVisible = viewer.Visible;
+viewer = rfprop.internal.Validators.validateMap(input_parameters, 'sinr');
 
-% Create vector array of all txs
-sigSource = validateSignalSource(p);
+sig_source = validate_signal_source(input_parameters);
 transmitters = transmitters(:);
-if isa(sigSource,'txsite')
-    if ~ismember(sigSource,transmitters)
-        transmitters = [transmitters; sigSource];
+if isa(sig_source,'txsite')
+    if ~ismember(sig_source, transmitters)
+        transmitters = [transmitters; sig_source];
     end
 end
-numTx = numel(transmitters);
+num_tx = numel(transmitters);
 
-% Get site coordinates
-txsCoords = rfprop.internal.AntennaSiteCoordinates.createFromAntennaSites(transmitters, viewer);
+txs_coordinates = rfprop.internal.AntennaSiteCoordinates.createFromAntennaSites(transmitters, viewer);
 txslatlon = transmitters.location;
 
-% Validate parameters
-animation = rfprop.internal.Validators.validateGraphicsControls(p, 'sinr');
-values = validateValues(p);
-clim = rfprop.internal.Validators.validateColorLimits(p, [-5 20], 'sinr');
-cmap = rfprop.internal.Validators.validateColorMap(p, 'sinr');
-transparency = rfprop.internal.Validators.validateTransparency(p, 'sinr');
-showLegend = rfprop.internal.Validators.validateShowLegend(p, 'sinr');
-pm = rfprop.internal.Validators.validatePropagationModel(p, viewer, 'sinr');
-rxGain = rfprop.internal.Validators.validateReceiverGain(p, 'sinr');
-rxAntennaHeight = rfprop.internal.Validators.validateReceiverAntennaHeight(p, 'sinr');
-noisePower = validateReceiverNoisePower(p);
+propagation_model = rfprop.internal.Validators.validatePropagationModel(input_parameters, viewer, 'sinr');
+rx_gain = 2.1;
+rx_antenna_height = 1;
+noise_power = -107;
 
-% Validate dependent parameters
-if ismember('MaxRange', p.UsingDefaults)
-    maxrange = rfprop.internal.Validators.defaultMaxRange(txslatlon, pm, viewer);
+if ismember('MaxRange', input_parameters.UsingDefaults)
+    max_range = rfprop.internal.Validators.defaultMaxRange(txslatlon, propagation_model, viewer);
 else
-    maxrange = rfprop.internal.Validators.validateNumericMaxRange(p.Results.MaxRange, pm, numTx, viewer, 'sinr');
+    max_range = rfprop.internal.Validators.validateNumericMaxRange(input_parameters.Results.MaxRange, propagation_model, num_tx, viewer, 'sinr');
 end
-[res, isAutoRes] = rfprop.internal.Validators.validateResolution(p, maxrange, 'sinr');
-datarange = rfprop.internal.Validators.validateDataRange(txslatlon, maxrange, res, viewer.UseTerrain);
-rxLocationsLayout = rfprop.internal.Validators.validateReceiverLocationsLayout(p, pm, txslatlon, 'sinr');
-maxImageResFactor = p.Results.MaxImageResolutionFactor;
-radialResFactor = p.Results.RadialResolutionFactor;
+[results, is_auto_res] = rfprop.internal.Validators.validateResolution(input_parameters, max_range, 'sinr');
+data_range = rfprop.internal.Validators.validateDataRange(txslatlon, max_range, results, viewer.UseTerrain);
 
-% Validate visualization type and color data
-ids = cell(1, numTx);
-for k = 1:numTx
-    ids{k} = transmitters(k).Name;
-end
-visualType = 'sinr';
-colorData = struct('Colormap',cmap,'ColorLimits',clim);
-viewer.validateImageVisualization(ids, visualType, colorData);
+maximum_image_size = viewer.MaxImageSize;
+north_latitude = coordinates_bbox.maximum_latitude;
+south_latitude = coordinates_bbox.minimum_latitude;
+east_longitude = coordinates_bbox.maximum_longitude;
+west_longitude = coordinates_bbox.minimum_longitude;
 
-% Generate location grid containing data range from each transmitter site
-maxImageSize = viewer.MaxImageSize;
-latNorth = coordinates_bbox.maximum_latitude;
-latSouth = coordinates_bbox.minimum_latitude;
-lonEast = coordinates_bbox.maximum_longitude;
-lonWest = coordinates_bbox.minimum_longitude;
+[grid_lats, grid_lons, ~] = rfprop.internal.MapUtils.geogrid(...
+    north_latitude, south_latitude, east_longitude, west_longitude, results, is_auto_res, max_range, maximum_image_size, 'sinr');
+gridSize = size(grid_lats);
 
-[gridlats, gridlons, res] = rfprop.internal.MapUtils.geogrid(...
-    latNorth, latSouth, lonEast, lonWest, res, isAutoRes, maxrange, maxImageSize, 'sinr');
-gridSize = size(gridlats);
-
-% Compute and validate image size for SINR map
-imageSize = rfprop.internal.Validators.validateImageSize(...
-    gridSize, maxImageResFactor, maxImageSize, res, 'sinr');
-
-% Trim grid locations to those which are within data range
-[datalats, datalons] = rfprop.internal.MapUtils.georange(...
-    transmitters, gridlats(:), gridlons(:), datarange, viewer.TerrainSource);
+[data_lats, data_lons] = rfprop.internal.MapUtils.georange(...
+    transmitters, grid_lats(:), grid_lons(:), data_range, viewer.TerrainSource);
 
 type = 'power';
 
-% Define rxsites at grid locations within data range
-rxs = rxsite(...
+receivers = rxsite(...
     'Name', 'internal.sinrsite', ... % Specify to avoid default site naming
-    'Latitude', datalats, ...
-    'Longitude', datalons, ...
-    'AntennaHeight', rxAntennaHeight);
+    'Latitude', data_lats, ...
+    'Longitude', data_lons, ...
+    'AntennaHeight', rx_antenna_height);
 
-% Compute signal strength at each rxsite in the grid
-ss = sigstrength(rxs, transmitters, pm, ...
+signal_strength = sigstrength(receivers, transmitters, propagation_model, ...
     'Type', type, ...
-    'ReceiverGain', rxGain, ...
+    'ReceiverGain', rx_gain, ...
     'Map', viewer, ...
-    'TransmitterAntennaSiteCoordinates', txsCoords);
+    'TransmitterAntennaSiteCoordinates', txs_coordinates);
 
-% Cache signal strength on site coordinates
-txsCoords.addCustomData('SignalStrength', ss);
+txs_coordinates.addCustomData('SignalStrength', signal_strength);
 
-% Compute SINR at each rxsite in the grid
-data = sinr(rxs, transmitters, ...
-    'SignalSource', sigSource, ...
-    'ReceiverNoisePower', noisePower, ...
-    'PropagationModel', pm, ...
-    'ReceiverGain', rxGain, ...
-    'TransmitterAntennaSiteCoordinates', txsCoords, ...
+sinr_data = sinr(receivers, transmitters, ...
+    'SignalSource', sig_source, ...
+    'ReceiverNoisePower', noise_power, ...
+    'PropagationModel', propagation_model, ...
+    'ReceiverGain', rx_gain, ...
+    'TransmitterAntennaSiteCoordinates', txs_coordinates, ...
     'Map', viewer);
 
-% Create contour map
-if siteViewerWasClosed(viewer)
-    return
-end
-contourmap(transmitters, datalats, datalons, data, visualType, ...
-    'Animation', animation, ...
-    'Map', viewer, ...
-    'Levels', values, ...
-    'ColorLimits', clim, ...
-    'Colormap', cmap, ...
-    'Transparency', transparency, ...
-    'ShowLegend', showLegend, ...
-    'ImageSize', imageSize, ...
-    'MaxRange', maxrange, ...
-    'LegendTitle', message('shared_channel:rfprop:SINRLegendTitle').getString, ...
-    'SaturateColorFloor', true, ...
-    'AntennaSiteCoordinates', txsCoords);
-
 end
 
-function wasClosed = siteViewerWasClosed(viewer)
+function [input_parameters] = validate_sinr_values_parameters(input_parameters, varargin)
 
-wasClosed = viewer.LaunchWebWindow && ~viewer.Visible;
+if mod(numel(varargin),2)
+    input_parameters.addOptional('PropagationModel', [], @(x)ischar(x)||isstring(x)||isa(x,'rfprop.PropagationModel'));
+else
+    input_parameters.addParameter('PropagationModel', []);
+end
+input_parameters.addParameter('SignalSource', 'strongest');
+input_parameters.addParameter('Values', -5:20);
+input_parameters.addParameter('Resolution', 'auto');
+input_parameters.addParameter('ReceiverGain', 2.1);
+input_parameters.addParameter('ReceiverAntennaHeight', 1);
+input_parameters.addParameter('ReceiverNoisePower', -107);
+input_parameters.addParameter('Animation', '');
+input_parameters.addParameter('MaxRange', []);
+input_parameters.addParameter('Colormap', 'jet');
+input_parameters.addParameter('ColorLimits', []);
+input_parameters.addParameter('Transparency', 0.4);
+input_parameters.addParameter('ShowLegend', true);
+input_parameters.addParameter('ReceiverLocationsLayout', []);
+input_parameters.addParameter('MaxImageResolutionFactor', 5);
+input_parameters.addParameter('RadialResolutionFactor', 2);
+input_parameters.addParameter('Map', []);
+input_parameters.parse(varargin{:});
+
 end
 
-function sigsource = validateSignalSource(p)
+function sig_source = validate_signal_source(parameters)
 
 try
-    sigsource = p.Results.SignalSource;
-    if ischar(sigsource) || isstring(sigsource)
-        sigsource = validatestring(sigsource, {'strongest'}, ...
-            'sinr','SignalSource');
+    sig_source = parameters.Results.SignalSource;
+    if ischar(sig_source) || isstring(sig_source)
+        sig_source = validatestring(sig_source, {'strongest'}, ...
+            'sinr', 'SignalSource');
     else
-        validateattributes(sigsource,{'txsite'}, {'scalar'}, ...
-            'sinr','SignalSource');
+        validateattributes(sig_source, {'txsite'}, {'scalar'}, ...
+            'sinr', 'SignalSource');
     end
-catch e
-    throwAsCaller(e);
-end
-end
-
-function values = validateValues(p)
-
-try
-    values = p.Results.Values;
-    validateattributes(values, {'numeric'}, ...
-        {'real','finite','nonnan','nonsparse','vector','nonempty'}, 'sinr', 'Values');
-    if ~iscolumn(values)
-        values = values(:);
-    end
-    values = double(values);
-catch e
-    throwAsCaller(e);
-end
-end
-
-function noisePower =  validateReceiverNoisePower(p)
-
-try
-    noisePower = p.Results.ReceiverNoisePower;
-    validateattributes(noisePower, {'numeric'}, {'real','finite','nonnan','nonsparse','scalar'}, ...
-        'sinr', 'ReceiverNoisePower');
-catch e
-    throwAsCaller(e);
+catch exception
+    throwAsCaller(exception);
 end
 end

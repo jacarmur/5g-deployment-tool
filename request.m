@@ -1,4 +1,3 @@
-%close (map)
 clear all
 close all
 
@@ -9,6 +8,7 @@ FILTER_CELLS_BY_COMPANY = true;
 NUMBER_OF_RX = 5;
 TX_POWER_IN_WATTS = 15;
 NUMBER_OF_CHANNELS = 5;
+best_sinr_points = 9e9;
 
 %% Frequencies and bands
 
@@ -46,29 +46,43 @@ end
 
 %% Transmitters generation
 
-transmitters = get_transmitters_from_cells(selected_phone_cells, frequency, TX_POWER_IN_WATTS, NUMBER_OF_CHANNELS);
-for i = 1:length(transmitters)
-    show(transmitters(i));
-end
+for offset=0:10:40
+transmitters = get_transmitters_from_cells(selected_phone_cells, frequency, TX_POWER_IN_WATTS, NUMBER_OF_CHANNELS, offset);
+% for i = 1:length(transmitters)
+%     show(transmitters(i));
+% end
 
 %% Rx 
 
-for rx_index = 1:NUMBER_OF_RX
-    variation1 = (rand()-0.5)*0.01;
-    variation2 = (rand()-0.5)*0.01;
-    rx_lat = (lat_max + lat_min)/2 + variation1;
-    rx_lon = (lon_max + lon_min)/2 + variation2;
-    receivers(rx_index) = rxsite("Name","Receiver "+rx_index, ...
-        "Latitude",rx_lat, ...
-        "Longitude",rx_lon, ...
-        "AntennaHeight",1);
+% for rx_index = 1:NUMBER_OF_RX
+%     variation1 = (rand()-0.5)*0.01;
+%     variation2 = (rand()-0.5)*0.01;
+%     rx_lat = (lat_max + lat_min)/2 + variation1;
+%     rx_lon = (lon_max + lon_min)/2 + variation2;
+%     receivers(rx_index) = rxsite("Name","Receiver "+rx_index, ...
+%         "Latitude",rx_lat, ...
+%         "Longitude",rx_lon, ...
+%         "AntennaHeight",1);
+% 
+%     show(receivers(rx_index));
+% end
+[data_latitudes, data_longitudes, grid_size, sinr_data] = calculate_sinr_values_map(transmitters, coordinates_bbox);
+current_sinr_points = length(find(sinr_data<5));
 
-    show(receivers(rx_index));
+    if current_sinr_points < best_sinr_points
+        best_data_latitudes = data_latitudes;
+        best_data_longitudes = data_longitudes;
+        best_grid_size = grid_size;
+        best_sinr_data = sinr_data;
+        best_sinr_points = current_sinr_points;
+    end
 end
-sinr_map = calculate_sinr_values_map(transmitters, coordinates_bbox);
-plot_values_map(sinr_map);
-sinr_matrix = get_sinr_matrix_for_all_the_transmitters(receivers, transmitters);
-power_matrix = get_power_matrix_for_all_the_transmitters(receivers, transmitters);
+plot_values_map(transmitters, best_data_latitudes, best_data_longitudes, best_grid_size, best_sinr_data);
+
+%plot_values_map(transmitters, datalats, datalons, gridSize, data);
+
+%sinr_matrix = get_sinr_matrix_for_all_the_transmitters(receivers, transmitters);
+%power_matrix = get_power_matrix_for_all_the_transmitters(receivers, transmitters);
 
 %% TODO LIST
 % Asignacion de frecuencias segun tecnologia

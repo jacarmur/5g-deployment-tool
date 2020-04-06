@@ -1,6 +1,4 @@
-function [receivers, transmitters, params] = validate_parameters(receivers, transmitters, input_parameters, varargin)
-%VALIDATE_PARAMETERS Summary of this function goes here
-%   Detailed explanation goes here
+function [receivers, transmitters, parameters] = validate_parameters(receivers, transmitters, input_parameters, varargin)
 
 input_parameters.addParameter('SignalSource', 'strongest');
 input_parameters.addParameter('ReceiverNoisePower', -107);
@@ -10,68 +8,43 @@ input_parameters.addParameter('Map', []);
 input_parameters.addParameter('TransmitterAntennaSiteCoordinates', []);
 input_parameters.parse(varargin{:});
 
-% Validate and get parameters
-params.numRxs = numel(receivers);
-params.map = rfprop.internal.Validators.validateMapTerrainSource(input_parameters, 'sinr');
-params.propagation_model = rfprop.internal.Validators.validatePropagationModel(input_parameters, params.map, 'sinr');
-sigSource = validateSignalSource(input_parameters, params.numRxs);
-params.noisePower = validateReceiverNoisePower(input_parameters);
-[params.rxGain, params.usingDefaultGain] = validateReceiverGain(input_parameters);
-validateReceiverAntennaHeight(input_parameters);
+parameters.numRxs = numel(receivers);
+parameters.map = rfprop.internal.Validators.validateMapTerrainSource(input_parameters, 'sinr');
+parameters.propagation_model = rfprop.internal.Validators.validatePropagationModel(input_parameters, parameters.map, 'sinr');
+signal_source = validateSignalSource(input_parameters, parameters.numRxs);
+parameters.noisePower = validate_receiver_noise_power(input_parameters);
+[parameters.rxGain, parameters.usingDefaultGain] = validate_receiver_gain(input_parameters);
+validate_receiver_antenna_height(input_parameters);
 
-% Create vector array of all txs
 transmitters = transmitters(:);
-usingSiteSigSource = isa(sigSource,'txsite');
-if usingSiteSigSource
-    % Include signal sources in txsite list
-    transmitters = union(transmitters,sigSource,'stable');
+using_site_sig_source = isa(signal_source, 'txsite');
+if using_site_sig_source
+    transmitters = union(transmitters, signal_source, 'stable');
 end
 
-params.txsCoords = rfprop.internal.Validators.validateAntennaSiteCoordinates(...
-    input_parameters.Results.TransmitterAntennaSiteCoordinates, transmitters, params.map, 'sinr');
+parameters.txsCoords = rfprop.internal.Validators.validateAntennaSiteCoordinates(...
+    input_parameters.Results.TransmitterAntennaSiteCoordinates, transmitters, parameters.map, 'sinr');
 
 end
 
-
-function sigsource = validateSignalSource(params, numRxs)
+function noise_power =  validate_receiver_noise_power(params)
 
 try
-    sigsource = params.Results.SignalSource;
-    if ischar(sigsource) || isstring(sigsource)
-        sigsource = validatestring(sigsource, {'strongest'}, ...
-            'sinr','SignalSource');
-    elseif isscalar(sigsource)
-        validateattributes(sigsource,{'txsite'}, {'scalar'}, ...
-            'sinr','SignalSource');
-    else
-        validateattributes(sigsource,{'txsite'}, {'numel',numRxs}, ...
-            'sinr','SignalSource');
-        sigsource = sigsource(:); % Guarantee column vector
-    end
-catch exception
-    throwAsCaller(exception);
-end
-end
-
-
-function noisePower =  validateReceiverNoisePower(params)
-
-try
-    noisePower = params.Results.ReceiverNoisePower;
-    validateattributes(noisePower, {'numeric'}, {'real','finite','nonnan','nonsparse','scalar'}, ...
+    noise_power = params.Results.ReceiverNoisePower;
+    validateattributes(noise_power, {'numeric'}, {'real','finite','nonnan','nonsparse','scalar'}, ...
         'sinr', 'ReceiverNoisePower');
 catch exception
     throwAsCaller(exception);
 end
 end
 
-function [rxGain, usingDefaultGain] = validateReceiverGain(params)
+function [rx_gain, using_default_gain] = validate_receiver_gain(parameters)
 
 try
-    rxGain = params.Results.ReceiverGain;
-    usingDefaultGain = ismember('ReceiverGain',params.UsingDefaults);
-    if ~usingDefaultGain
-        validateattributes(rxGain,{'numeric'}, {'real','finite','nonnan','nonsparse','scalar'}, ...
+    rx_gain = parameters.Results.ReceiverGain;
+    using_default_gain = ismember('ReceiverGain', parameters.UsingDefaults);
+    if ~using_default_gain
+        validateattributes(rx_gain,{'numeric'}, {'real','finite','nonnan','nonsparse','scalar'}, ...
             'sinr', 'ReceiverGain');
     end
 catch exception
@@ -79,13 +52,13 @@ catch exception
 end
 end
 
-function [rxHeight, usingDefaultHeight] = validateReceiverAntennaHeight(params)
+function [rx_height, using_default_height] = validate_receiver_antenna_height(parameters)
 
 try
-    rxHeight = params.Results.ReceiverAntennaHeight;
-    usingDefaultHeight = ismember('ReceiverAntennaHeight',params.UsingDefaults);
-    if ~usingDefaultHeight
-        validateattributes(rxHeight,{'numeric'}, {'real','finite','nonnan','nonsparse','scalar','nonnegative', ...
+    rx_height = parameters.Results.ReceiverAntennaHeight;
+    using_default_height = ismember('ReceiverAntennaHeight', parameters.UsingDefaults);
+    if ~using_default_height
+        validateattributes(rx_height,{'numeric'}, {'real','finite','nonnan','nonsparse','scalar','nonnegative', ...
             '<=',rfprop.Constants.MaxPropagationDistance}, 'sinr', 'ReceiverAntennaHeight');
     end
 catch exception
