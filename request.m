@@ -38,7 +38,7 @@ coordinates_bbox = location_bbox(lat_min, lat_max, lon_min, lon_max);
 
 bbox_map = coordinates_bbox.get_maps_bbox_string();
 if (DOWNLOAD_MAP)
-    download_building_from_openstreetmap(bbox_map);
+    download_buildings_from_openstreetmap(bbox_map);
 end
 map = siteviewer('Buildings', 'downloaded_map2.osm');
 
@@ -64,18 +64,18 @@ transmitters = get_transmitters_from_coordinates(uma_latitudes, uma_longitudes, 
 
 %% Rx 
 
-for rx_index = 1:NUMBER_OF_RX
-    variation1 = (rand()-0.5)*0.01;
-    variation2 = (rand()-0.5)*0.01;
-    rx_lat = (lat_max + lat_min)/2 + variation1;
-    rx_lon = (lon_max + lon_min)/2 + variation2;
-    receivers(rx_index) = rxsite("Name","Receiver "+rx_index, ...
-        "Latitude",rx_lat, ...
-        "Longitude",rx_lon, ...
-        "AntennaHeight",1);
-
-    show(receivers(rx_index));
-end
+% for rx_index = 1:NUMBER_OF_RX
+%     variation1 = (rand()-0.5)*0.01;
+%     variation2 = (rand()-0.5)*0.01;
+%     rx_lat = (lat_max + lat_min)/2 + variation1;
+%     rx_lon = (lon_max + lon_min)/2 + variation2;
+%     receivers(rx_index) = rxsite("Name","Receiver "+rx_index, ...
+%         "Latitude",rx_lat, ...
+%         "Longitude",rx_lon, ...
+%         "AntennaHeight",1);
+% 
+%     show(receivers(rx_index));
+% end
 [data_latitudes, data_longitudes, grid_size, sinr_data] = calculate_sinr_values_map(transmitters, coordinates_bbox);
 current_sinr_points = length(find(sinr_data<5));
 
