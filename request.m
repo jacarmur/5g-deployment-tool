@@ -3,7 +3,7 @@ close all
 
 %% Configuration
 
-DOWNLOAD_MAP = true;
+DOWNLOAD_MAP = false;
 FILTER_CELLS_BY_COMPANY = true;
 NUMBER_OF_RX = 5;
 TX_POWER_IN_WATTS = 15;
@@ -62,8 +62,6 @@ transmitters = get_transmitters_from_coordinates(uma_latitudes, uma_longitudes, 
 %     show(transmitters(i));
 % end
 
-%% Rx 
-
 % for rx_index = 1:NUMBER_OF_RX
 %     variation1 = (rand()-0.5)*0.01;
 %     variation2 = (rand()-0.5)*0.01;
@@ -83,13 +81,18 @@ current_sinr_points = length(find(sinr_data<5));
         best_data_latitudes = data_latitudes;
         best_data_longitudes = data_longitudes;
         best_grid_size = grid_size;
-        best_sinr_data = sinr_data;
+        best_sinr_data = sinr_data; 
         best_sinr_points = current_sinr_points;
     end
 end
 plot_values_map(transmitters, best_data_latitudes, best_data_longitudes, best_grid_size, best_sinr_data);
 
-sinr_matrix = get_sinr_matrix_for_all_the_transmitters(receivers, transmitters);
+[value, position] = min(best_sinr_data);
+receiver = rxsite("Name", "Worst case receiver", ...
+    "Latitude", best_data_latitudes(position), ...
+    "Longitude", best_data_longitudes(position));
+
+sinr_matrix = get_sinr_matrix_for_all_the_transmitters(receiver, transmitters);
 %power_matrix = get_power_matrix_for_all_the_transmitters(receivers, transmitters);
 
 %% TODO LIST
