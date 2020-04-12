@@ -3,7 +3,7 @@ close all
 
 %% Configuration
 
-DOWNLOAD_MAP = false;
+DOWNLOAD_MAP = true;
 FILTER_CELLS_BY_COMPANY = true;
 NUMBER_OF_RX = 5;
 TX_POWER_IN_WATTS = 15;
