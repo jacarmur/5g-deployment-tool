@@ -11,36 +11,15 @@ input_parameters.parse(varargin{:});
 parameters.numRxs = numel(receivers);
 parameters.map = rfprop.internal.Validators.validateMapTerrainSource(input_parameters, 'sinr');
 parameters.propagation_model = rfprop.internal.Validators.validatePropagationModel(input_parameters, parameters.map, 'sinr');
-signal_source = parameters.Results.SignalSource;
 parameters.noisePower = validate_receiver_noise_power(input_parameters);
 [parameters.rxGain, parameters.usingDefaultGain] = validate_receiver_gain(input_parameters);
 validate_receiver_antenna_height(input_parameters);
 
 transmitters = transmitters(:);
-using_site_sig_source = isa(signal_source, 'txsite');
-if using_site_sig_source
-    transmitters = union(transmitters, signal_source, 'stable');
-end
 
 parameters.txsCoords = rfprop.internal.Validators.validateAntennaSiteCoordinates(...
     input_parameters.Results.TransmitterAntennaSiteCoordinates, transmitters, parameters.map, 'sinr');
 
-end
-
-function sig_source = validate_signal_source(parameters)
-
-try
-    sig_source = parameters.Results.SignalSource;
-    if ischar(sig_source) || isstring(sig_source)
-        sig_source = validatestring(sig_source, {'strongest'}, ...
-            'sinr', 'SignalSource');
-    else
-        validateattributes(sig_source, {'txsite'}, {'scalar'}, ...
-            'sinr', 'SignalSource');
-    end
-catch exception
-    throwAsCaller(exception);
-end
 end
 
 function noise_power =  validate_receiver_noise_power(params)

@@ -25,6 +25,8 @@ for i = 1:length(selected_phone_cells)
         lon_second = selected_phone_cells(j).lon;
         if i~=j && lat_original==lat_second && lon_original==lon_second
             is_duplicated = true;
+        elseif i~=j && ~is_point_far_enough(lat_original, lon_original, lat_second, lon_second, 50)
+            is_duplicated = true;
         end
     end
     
@@ -33,4 +35,16 @@ for i = 1:length(selected_phone_cells)
         cells_index = cells_index + 1;
     end
 end
+end
+
+function [is_far_enough] = is_point_far_enough(lat_original, lon_original, lat_second, lon_second, distance)
+    is_far_enough = true;    
+    lat_difference = abs(lat_original - lat_second);
+    lon_difference = abs(lon_original - lon_second);
+    
+    distance_factor = 0.00001*distance; % Transform into meters approx
+    
+    if distance_factor > lat_difference && distance_factor > lon_difference
+        is_far_enough = false;
+    end
 end

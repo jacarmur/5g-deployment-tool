@@ -4,7 +4,8 @@ antennaElement = get_patch_antenna_element(frequency);
 
 number_of_txs = length(latitudes)*3;
 
-cell_sector_angle = [30 150 270] + offset;
+% Numero de transmitters * 3 offsets aleatorios
+cell_sector_angle = [0 120 240] + offset;
 cell_angles = zeros(1, number_of_txs);
 cell_nums = zeros(1, number_of_txs);
 cells_latitudes = zeros(1, number_of_txs);
