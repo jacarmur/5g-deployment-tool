@@ -25,7 +25,7 @@ for i = 1:length(selected_phone_cells)
         lon_second = selected_phone_cells(j).lon;
         if i~=j && lat_original==lat_second && lon_original==lon_second
             is_duplicated = true;
-        elseif i~=j && ~is_point_far_enough(lat_original, lon_original, lat_second, lon_second, 50)
+        elseif i~=j && ~is_point_far_enough(lat_original, lon_original, lat_second, lon_second, 80)
             is_duplicated = true;
         end
     end
