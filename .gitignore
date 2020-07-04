@@ -1,0 +1,6 @@
+venv/
+*.pyc
+.idea/
+*.osm
+*.py
+*.py

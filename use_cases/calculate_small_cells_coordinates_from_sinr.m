@@ -1,4 +1,4 @@
-function [small_cell_latitudes, small_cell_longitudes] = calculate_small_cells_coords(sinr_data, latitudes, longitudes, varargin)
+function [small_cell_latitudes, small_cell_longitudes] = calculate_small_cells_coordinates_from_sinr(sinr_data, latitudes, longitudes, varargin)
 
 points_with_low_sinr = sinr_data < 0;
 X1 = latitudes(points_with_low_sinr);

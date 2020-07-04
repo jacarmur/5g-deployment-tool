@@ -48,6 +48,18 @@ classdef location_bbox
             formatted_string = coordinates_to_string(lon1, lat1, lon2, lat2);
         end
         
+        function formatted_string = get_social_attractors_bbox_string(obj)
+            %get_maps_bbox_string Returns a string formatted for the Maps
+            %social attractors identifier
+            lat1 = obj.minimum_latitude;
+            lon1 = obj.minimum_longitude;
+            lat2 = obj.maximum_latitude;
+            lon2 = obj.maximum_longitude;
+            
+            coordinates_list = [string(lat1), string(lon1), string(lat2), string(lon2)];
+            formatted_string = strjoin(coordinates_list, ' ');
+        end
+        
     end
 end
 
