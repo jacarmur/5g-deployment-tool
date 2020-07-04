@@ -1,5 +1,5 @@
 function [data_lats, data_lons, gridSize, sinr_data] = calculate_sinr_values_map(transmitters, coordinates_bbox, varargin)
-
+propagation_model = propagationModel('longley-rice');
 validateattributes(transmitters, {'txsite'}, {'nonempty'}, 'sinr', '', 1);
 
 input_parameters = inputParser;
@@ -19,7 +19,6 @@ num_tx = numel(transmitters);
 txs_coordinates = rfprop.internal.AntennaSiteCoordinates.createFromAntennaSites(transmitters, viewer);
 txslatlon = transmitters.location;
 
-propagation_model = rfprop.internal.Validators.validatePropagationModel(input_parameters, viewer, 'sinr');
 rx_gain = 2.1;
 rx_antenna_height = 1;
 noise_power = -107;

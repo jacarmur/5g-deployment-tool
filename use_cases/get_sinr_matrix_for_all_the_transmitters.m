@@ -17,7 +17,8 @@ args = {'Type', 'power', ...
 if ~validated_params.usingDefaultGain
     args = [args, 'ReceiverGain', rxGain];
 end
-signal_strength = sigstrength(receivers, transmitters, validated_params.propagation_model, args{:});
+propagation_model = propagationModel('longley-rice');
+signal_strength = sigstrength(receivers, transmitters, propagation_model, args{:});
 
 transmitter_frequencies = [transmitters.TransmitterFrequency];
 
