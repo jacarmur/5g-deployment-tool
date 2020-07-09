@@ -11,7 +11,7 @@ UMA_TX_POWER = parameters.uma_power; % Watts = 44 dBm
 UMI_COVERAGE_TX_POWER = parameters.umi_coverage_power;
 UMI_HOTSPOT_TX_POWER = parameters.umi_hotspot_power;
 UMI_BLIND_SPOT_TX_POWER = parameters.umi_blind_power;
-UMI_ISD = parameters.umi_coverage_isd; % metters
+UMI_ISD = parameters.umi_coverage_isd; % meters
 
 UMA_FREQUENCY = parameters.uma_frequency;
 UMI_COVERAGE_FREQUENCY = parameters.umi_coverage_frequency;
@@ -39,8 +39,8 @@ UMI_HOTSPOT_NAME = 'umi_hotspot';
 UMI_BLIND_SPOT_NAME = 'umi_blind_spot';
 UMA_ANTENNA = 'sector';
 UMI_ANTENNA = 'isotropic';
-UMA_HEIGHT = 25; % metters
-UMI_HEIGHT = 10; % metters
+UMA_HEIGHT = 25; % meters
+UMI_HEIGHT = 10; % meters
 uma_tx_model = tx_model(UMA_FREQUENCY, UMA_TX_POWER, UMA_ANTENNA, UMA_HEIGHT, UMA_NAME);
 umi_coverage_model = tx_model(UMI_COVERAGE_FREQUENCY, UMI_COVERAGE_TX_POWER, UMI_ANTENNA, UMI_HEIGHT, UMI_COVERAGE_NAME);
 umi_hotspot_model = tx_model(UMI_HOTSPOT_FREQUENCY, UMI_HOTSPOT_TX_POWER, UMI_ANTENNA, UMI_HEIGHT, UMI_HOTSPOT_NAME);
