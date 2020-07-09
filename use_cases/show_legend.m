@@ -1,15 +1,15 @@
 function [] = show_legend(map)
-map.remove(map.LegendID);
-composite = globe.internal.CompositeModel;
-legendColors = ["#ff0000", "#00b4ff", "#ffcc00", "#8dff41", "#ffffff"];
-legendColorValues = ["UMa", "UMi Coverage", "UMi Hotspot", "UMi Blind spot", "Receiver"];
-legendTitle = 'Base Station Legend';
-lv = globe.internal.LegendViewer;
-legendID = 'legendcolors';
-[~, legendDescriptor] = lv.buildPlotDescriptors(legendTitle, legendColors, legendColorValues, "ID", legendID);
-map.LegendID = legendID;
-composite.addGraphic("colorLegend", legendDescriptor);
-compositeController = globe.internal.CompositeController(map.Instance.GlobeViewer.Controller);
-compositeController.composite(composite.buildPlotDescriptors)
+    map.remove(map.LegendID);
+    composite = globe.internal.CompositeModel;
+    legend_colors = ["#ff0000", "#00b4ff", "#ffcc00", "#8dff41", "#ffffff"];
+    legend_color_values = ["UMa", "UMi Coverage", "UMi Hotspot", "UMi Blind spot", "Receiver"];
+    legend_title = 'Base Station Legend';
+    legend_viewer = globe.internal.LegendViewer;
+    legend_id = 'legendcolors';
+    [~, legend_descriptor] = legend_viewer.buildPlotDescriptors(legend_title, legend_colors, legend_color_values, "ID", legend_id);
+    map.LegendID = legend_id;
+    composite.addGraphic("colorLegend", legend_descriptor);
+    composite_controller = globe.internal.CompositeController(map.Instance.GlobeViewer.Controller);
+    composite_controller.composite(composite.buildPlotDescriptors)
 end
 

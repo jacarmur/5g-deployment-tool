@@ -6,7 +6,6 @@ height = tx_model.height;
 antenna_element = get_antenna_element(tx_model.antenna_type, frequency);
 
 number_of_txs = length(latitudes);
-% Numero de transmitters * 3 offsets aleatorios
 if strcmp(tx_model.name, 'uma')
     offset = load_offset_from_optimization_file(number_of_txs);
     number_of_txs = number_of_txs*3;
@@ -79,53 +78,46 @@ patchElement.TiltAxis = [0 1 0];
 
 end
 
-function [antennaElement] = get_custom_antenna_element()
+function [antenna_element] = get_custom_antenna_element()
 
-% Define pattern parameters
-azvec = -180:180;
-elvec = -90:90;
-Am = 30; % Maximum attenuation (dB)
-tilt = -12; % Tilt angle
-az3dB = 65; % 3 dB bandwidth in azimuth
-el3dB = 65; % 3 dB bandwidth in elevation
+azimuth_vector = -180:180;
+elevation_vector = -90:90;
+maximum_attenuation_db = 30;
+tilt = -12;
+azimuth_3dB = 65;
+elevation_3dB = 65;
 
-% Define antenna pattern
-[az,el] = meshgrid(azvec,elvec);
-azMagPattern = -12*(az/az3dB).^2;
-elMagPattern = -12*((el-tilt)/el3dB).^2;
-combinedMagPattern = azMagPattern + elMagPattern;
-combinedMagPattern(combinedMagPattern<-Am) = -Am; % Saturate at max attenuation
-phasepattern = zeros(size(combinedMagPattern));
+[azimuths, elevations] = meshgrid(azimuth_vector, elevation_vector);
+azimuth_magnitude_pattern = -12*(azimuths/azimuth_3dB).^2;
+elevation_magnitude_pattern = -12*((elevations-tilt)/elevation_3dB).^2;
+combined_magnitude_pattern = azimuth_magnitude_pattern + elevation_magnitude_pattern;
+combined_magnitude_pattern(combined_magnitude_pattern<-maximum_attenuation_db) = -maximum_attenuation_db;
+phase_pattern = zeros(size(combined_magnitude_pattern));
 
-% Create antenna element
-antennaElement = phased.CustomAntennaElement(...
-    'AzimuthAngles',azvec, ...
-    'ElevationAngles',elvec, ...
-    'MagnitudePattern',combinedMagPattern, ...
-    'PhasePattern',phasepattern);
+antenna_element = phased.CustomAntennaElement(...
+    'AzimuthAngles',azimuth_vector, ...
+    'ElevationAngles',elevation_vector, ...
+    'MagnitudePattern',combined_magnitude_pattern, ...
+    'PhasePattern',phase_pattern);
 
 end
 
-function antenna = get_8x8_antenna(fq)
-    % Define array size
-nrow = 8;
-ncol = 8;
+function antenna = get_8x8_antenna(frequency)
+number_of_rows = 8;
+number_of_columns = 8;
 
-% Define element spacing
-lambda = physconst('lightspeed')/fq;
-drow = lambda/2;
-dcol = lambda/2;
+lambda = physconst('lightspeed')/frequency;
+distance_row = lambda/2;
+distance_columns = lambda/2;
 
-% Define taper to reduce sidelobes 
-dBdown = 30;
-taperz = chebwin(nrow,dBdown);
-tapery = chebwin(ncol,dBdown);
-tap = taperz*tapery.'; % Multiply vector tapers to get 8-by-8 taper values
-antennaElement = get_custom_antenna_element();
-% Create 8-by-8 antenna array
-antenna = phased.URA('Size',[nrow ncol], ...
-    'Element',antennaElement, ...
-    'ElementSpacing',[drow dcol], ...
-    'Taper',tap, ...
+dB_down = 30;
+taper_z = chebwin(number_of_rows, dB_down);
+taper_y = chebwin(number_of_columns, dB_down);
+final_taper = taper_z*taper_y.';
+antenna_element = get_custom_antenna_element();
+antenna = phased.URA('Size',[number_of_rows number_of_columns], ...
+    'Element',antenna_element, ...
+    'ElementSpacing',[distance_row distance_columns], ...
+    'Taper',final_taper, ...
     'ArrayNormal','x');
 end

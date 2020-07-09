@@ -1,5 +1,5 @@
-function [data_lats, data_lons, gridSize, sinr_data] = calculate_sinr_values_map(transmitters, coordinates_bbox, varargin)
-propagation_model = propagationModel('longley-rice');
+function [data_lats, data_lons, gridSize, sinr_data] = calculate_sinr_values_map(transmitters, coordinates_bbox, model_name, varargin)
+propagation_model = propagationModel(model_name);
 validateattributes(transmitters, {'txsite'}, {'nonempty'}, 'sinr', '', 1);
 
 input_parameters = inputParser;
@@ -47,7 +47,7 @@ gridSize = size(grid_lats);
 type = 'power';
 
 receivers = rxsite(...
-    'Name', 'internal.sinrsite', ... % Specify to avoid default site naming
+    'Name', 'internal.sinrsite', ...
     'Latitude', data_lats, ...
     'Longitude', data_lons, ...
     'AntennaHeight', rx_antenna_height);
