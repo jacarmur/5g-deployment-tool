@@ -8,7 +8,12 @@ function [social_attractors_latitudes, social_attractors_longitudes, ...
     for i = 1:length(dictionary)
         social_attractors_latitudes(i) = dictionary(i).latitude;
         social_attractors_longitudes(i) = dictionary(i).longitude;
-        social_attractors_weighting(i) = building_weighting(dictionary(i).type);
+        
+        if isKey(building_weighting, dictionary(i).type)
+            social_attractors_weighting(i) = building_weighting(dictionary(i).type);
+        else
+            social_attractors_weighting(i) = 1;
+        end
     end
 end
 

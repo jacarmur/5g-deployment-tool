@@ -1,0 +1,731 @@
+Name: Transmitter 1 cell 1
+ - Location: 37.1602 , -3.609
+ - Power: 25 W
+ - Frequency: 3.5 GHz
+ - Sector angles: 95.2883 193.7622 295.2244
+ - Connected users: 78
+ - Traffic demanded by users: 28197.7794 Mbps
+ - Traffic demanded by UMis: 34449.289 Mbps
+
+Name: Transmitter 2 cell 1
+ - Location: 37.1603 , -3.598
+ - Power: 25 W
+ - Frequency: 3.5 GHz
+ - Sector angles: 73.6307 189.4911 278.4339
+ - Connected users: 209
+ - Traffic demanded by users: 75679.263 Mbps
+ - Traffic demanded by UMis: 50544.6509 Mbps
+
+Name: Transmitter 3 cell 1
+ - Location: 37.1616 , -3.6043
+ - Power: 25 W
+ - Frequency: 3.5 GHz
+ - Sector angles: 45.3133 148.4069 319.0616
+ - Connected users: 205
+ - Traffic demanded by users: 69836.3223 Mbps
+ - Traffic demanded by UMis: 193328.2414 Mbps
+
+Name: Transmitter 4 cell 1
+ - Location: 37.1626 , -3.598
+ - Power: 25 W
+ - Frequency: 3.5 GHz
+ - Sector angles: 72.692 185.7502 336.5763
+ - Connected users: 346
+ - Traffic demanded by users: 121730.2861 Mbps
+ - Traffic demanded by UMis: 153532.7512 Mbps
+
+Name: Transmitter 5 cell 1
+ - Location: 37.164 , -3.6084
+ - Power: 25 W
+ - Frequency: 3.5 GHz
+ - Sector angles: 118.2271 185.0374 297.9433
+ - Connected users: 121
+ - Traffic demanded by users: 42066.187 Mbps
+ - Traffic demanded by UMis: 231005.5028 Mbps
+
+Name: Transmitter 6 cell 1
+ - Location: 37.1661 , -3.5912
+ - Power: 25 W
+ - Frequency: 3.5 GHz
+ - Sector angles: 48.904 159.3209 317.4373
+ - Connected users: 466
+ - Traffic demanded by users: 161250.8185 Mbps
+ - Traffic demanded by UMis: 362174.7521 Mbps
+
+Name: Transmitter 7 cell 1
+ - Location: 37.1661 , -3.5938
+ - Power: 25 W
+ - Frequency: 3.5 GHz
+ - Sector angles: 96.5996 192.1789 267.0902
+ - Connected users: 308
+ - Traffic demanded by users: 99615.0948 Mbps
+ - Traffic demanded by UMis: 299029.2236 Mbps
+
+Name: Transmitter 8 cell 1
+ - Location: 37.1678 , -3.598
+ - Power: 25 W
+ - Frequency: 3.5 GHz
+ - Sector angles: 19.5757 162.9028 301.2794
+ - Connected users: 475
+ - Traffic demanded by users: 168502.4349 Mbps
+ - Traffic demanded by UMis: 156523.7655 Mbps
+
+Name: Transmitter 9 cell 1
+ - Location: 37.1693 , -3.609
+ - Power: 25 W
+ - Frequency: 3.5 GHz
+ - Sector angles: 31.7582 204.4324 295.1116
+ - Connected users: 171
+ - Traffic demanded by users: 59045.9164 Mbps
+ - Traffic demanded by UMis: 107876.7264 Mbps
+
+Name: Transmitter 10 cell 1
+ - Location: 37.1695 , -3.598
+ - Power: 25 W
+ - Frequency: 3.5 GHz
+ - Sector angles: 46.0136 206.6571 302.0981
+ - Connected users: 273
+ - Traffic demanded by users: 88386.0053 Mbps
+ - Traffic demanded by UMis: 77291.8488 Mbps
+
+Name: Transmitter 11 cell 1
+ - Location: 37.1695 , -3.6048
+ - Power: 25 W
+ - Frequency: 3.5 GHz
+ - Sector angles: 58.3861 171.882 290.7974
+ - Connected users: 382
+ - Traffic demanded by users: 133118.6177 Mbps
+ - Traffic demanded by UMis: 360406.2475 Mbps
+
+Name: Transmitter 12 cell 1
+ - Location: 37.1704 , -3.5907
+ - Power: 25 W
+ - Frequency: 3.5 GHz
+ - Sector angles: 35.8321 199.8994 297.288
+ - Connected users: 341
+ - Traffic demanded by users: 120381.1395 Mbps
+ - Traffic demanded by UMis: 472593.0917 Mbps
+
+Name: Transmitter 13 cell 1
+ - Location: 37.171 , -3.5958
+ - Power: 25 W
+ - Frequency: 3.5 GHz
+ - Sector angles: 63.8772 151.5091 328.2463
+ - Connected users: 418
+ - Traffic demanded by users: 137422.5827 Mbps
+ - Traffic demanded by UMis: 310213.9287 Mbps
+
+Name: Transmitter 14 cell 1
+ - Location: 37.1741 , -3.598
+ - Power: 25 W
+ - Frequency: 3.5 GHz
+ - Sector angles: 88.8161 146.9042 296.257
+ - Connected users: 769
+ - Traffic demanded by users: 268841.9789 Mbps
+ - Traffic demanded by UMis: 536711.1488 Mbps
+
+Name: Transmitter 15 cell 1
+ - Location: 37.1745 , -3.609
+ - Power: 25 W
+ - Frequency: 3.5 GHz
+ - Sector angles: 108.676 177.6014 292.8321
+ - Connected users: 67
+ - Traffic demanded by users: 25274.733 Mbps
+ - Traffic demanded by UMis: 19924.8531 Mbps
+
+Name: UMI umi_hotspot 1
+ - Location: 37.1701 , -3.5971
+ - Power: 5 W
+ - Frequency: 18 GHz
+ - Connected users: 1388
+ - Traffic demanded by users: 51225.2237 Mbps
+ - Backhaul to: Transmitter 10 cell 3
+ - Backhaul to coordinates: 37.1695 , -3.598
+
+Name: UMI umi_hotspot 2
+ - Location: 37.1737 , -3.5965
+ - Power: 5 W
+ - Frequency: 18 GHz
+ - Connected users: 413
+ - Traffic demanded by users: 140948.0283 Mbps
+ - Backhaul to: Transmitter 14 cell 3
+ - Backhaul to coordinates: 37.1741 , -3.598
+
+Name: UMI umi_hotspot 3
+ - Location: 37.1695 , -3.6075
+ - Power: 5 W
+ - Frequency: 18 GHz
+ - Connected users: 91
+ - Traffic demanded by users: 36843.9693 Mbps
+ - Backhaul to: Transmitter 9 cell 3
+ - Backhaul to coordinates: 37.1693 , -3.609
+
+Name: UMI umi_hotspot 4
+ - Location: 37.1641 , -3.6081
+ - Power: 5 W
+ - Frequency: 18 GHz
+ - Connected users: 338
+ - Traffic demanded by users: 130026.9575 Mbps
+ - Backhaul to: Transmitter 5 cell 3
+ - Backhaul to coordinates: 37.164 , -3.6084
+
+Name: UMI umi_hotspot 5
+ - Location: 37.1731 , -3.6051
+ - Power: 5 W
+ - Frequency: 18 GHz
+ - Connected users: 31
+ - Traffic demanded by users: 12659.2376 Mbps
+ - Backhaul to: Transmitter 11 cell 3
+ - Backhaul to coordinates: 37.1695 , -3.6048
+
+Name: UMI umi_hotspot 6
+ - Location: 37.1626 , -3.5934
+ - Power: 5 W
+ - Frequency: 18 GHz
+ - Connected users: 69
+ - Traffic demanded by users: 25198.813 Mbps
+ - Backhaul to: Transmitter 7 cell 3
+ - Backhaul to coordinates: 37.1661 , -3.5938
+
+Name: UMI umi_hotspot 7
+ - Location: 37.1677 , -3.5993
+ - Power: 5 W
+ - Frequency: 18 GHz
+ - Connected users: 134
+ - Traffic demanded by users: 48426.5544 Mbps
+ - Backhaul to: Transmitter 8 cell 3
+ - Backhaul to coordinates: 37.1678 , -3.598
+
+Name: UMI umi_hotspot 8
+ - Location: 37.1629 , -3.5929
+ - Power: 5 W
+ - Frequency: 18 GHz
+ - Connected users: 107
+ - Traffic demanded by users: 42722.28 Mbps
+ - Backhaul to: Transmitter 7 cell 3
+ - Backhaul to coordinates: 37.1661 , -3.5938
+
+Name: UMI umi_hotspot 9
+ - Location: 37.1607 , -3.6086
+ - Power: 5 W
+ - Frequency: 18 GHz
+ - Connected users: 34
+ - Traffic demanded by users: 13721.0054 Mbps
+ - Backhaul to: Transmitter 1 cell 3
+ - Backhaul to coordinates: 37.1602 , -3.609
+
+Name: UMI umi_hotspot 10
+ - Location: 37.1705 , -3.6058
+ - Power: 5 W
+ - Frequency: 18 GHz
+ - Connected users: 41
+ - Traffic demanded by users: 16414.5175 Mbps
+ - Backhaul to: Transmitter 11 cell 3
+ - Backhaul to coordinates: 37.1695 , -3.6048
+
+Name: UMI umi_hotspot 11
+ - Location: 37.163 , -3.5877
+ - Power: 5 W
+ - Frequency: 18 GHz
+ - Connected users: 207
+ - Traffic demanded by users: 79787.8121 Mbps
+ - Backhaul to: Transmitter 6 cell 3
+ - Backhaul to coordinates: 37.1661 , -3.5912
+
+Name: UMI umi_hotspot 12
+ - Location: 37.1702 , -3.6048
+ - Power: 5 W
+ - Frequency: 18 GHz
+ - Connected users: 50
+ - Traffic demanded by users: 19626.1652 Mbps
+ - Backhaul to: Transmitter 11 cell 3
+ - Backhaul to coordinates: 37.1695 , -3.6048
+
+Name: UMI umi_hotspot 13
+ - Location: 37.1744 , -3.5954
+ - Power: 5 W
+ - Frequency: 18 GHz
+ - Connected users: 217
+ - Traffic demanded by users: 78508.4899 Mbps
+ - Backhaul to: Transmitter 14 cell 3
+ - Backhaul to coordinates: 37.1741 , -3.598
+
+Name: UMI umi_hotspot 14
+ - Location: 37.1732 , -3.5935
+ - Power: 5 W
+ - Frequency: 18 GHz
+ - Connected users: 143
+ - Traffic demanded by users: 48885.7326 Mbps
+ - Backhaul to: Transmitter 13 cell 3
+ - Backhaul to coordinates: 37.171 , -3.5958
+
+Name: UMI umi_hotspot 15
+ - Location: 37.1742 , -3.5897
+ - Power: 5 W
+ - Frequency: 18 GHz
+ - Connected users: 148
+ - Traffic demanded by users: 56843.9252 Mbps
+ - Backhaul to: Transmitter 12 cell 3
+ - Backhaul to coordinates: 37.1704 , -3.5907
+
+Name: UMI umi_hotspot 16
+ - Location: 37.1644 , -3.6083
+ - Power: 5 W
+ - Frequency: 18 GHz
+ - Connected users: 143
+ - Traffic demanded by users: 52446.1831 Mbps
+ - Backhaul to: Transmitter 5 cell 3
+ - Backhaul to coordinates: 37.164 , -3.6084
+
+Name: UMI umi_coverage 1
+ - Location: 37.1606 , -3.6075
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 52
+ - Traffic demanded by users: 20728.2836 Mbps
+ - Backhaul to: Transmitter 1 cell 3
+ - Backhaul to coordinates: 37.1602 , -3.609
+
+Name: UMI umi_coverage 2
+ - Location: 37.1633 , -3.6075
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 59
+ - Traffic demanded by users: 22381.2015 Mbps
+ - Backhaul to: Transmitter 5 cell 3
+ - Backhaul to coordinates: 37.164 , -3.6084
+
+Name: UMI umi_coverage 3
+ - Location: 37.166 , -3.6075
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 65
+ - Traffic demanded by users: 26151.1607 Mbps
+ - Backhaul to: Transmitter 5 cell 3
+ - Backhaul to coordinates: 37.164 , -3.6084
+
+Name: UMI umi_coverage 4
+ - Location: 37.1687 , -3.6075
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 27
+ - Traffic demanded by users: 10493.8564 Mbps
+ - Backhaul to: Transmitter 9 cell 3
+ - Backhaul to coordinates: 37.1693 , -3.609
+
+Name: UMI umi_coverage 5
+ - Location: 37.1714 , -3.6075
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 152
+ - Traffic demanded by users: 60538.9008 Mbps
+ - Backhaul to: Transmitter 9 cell 3
+ - Backhaul to coordinates: 37.1693 , -3.609
+
+Name: UMI umi_coverage 6
+ - Location: 37.1741 , -3.6075
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 52
+ - Traffic demanded by users: 19924.8531 Mbps
+ - Backhaul to: Transmitter 15 cell 3
+ - Backhaul to coordinates: 37.1745 , -3.609
+
+Name: UMI umi_coverage 7
+ - Location: 37.162 , -3.6046
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 45
+ - Traffic demanded by users: 18480.077 Mbps
+ - Backhaul to: Transmitter 3 cell 3
+ - Backhaul to coordinates: 37.1616 , -3.6043
+
+Name: UMI umi_coverage 8
+ - Location: 37.1647 , -3.6046
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 58
+ - Traffic demanded by users: 20999.3283 Mbps
+ - Backhaul to: Transmitter 3 cell 3
+ - Backhaul to coordinates: 37.1616 , -3.6043
+
+Name: UMI umi_coverage 9
+ - Location: 37.1673 , -3.6046
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 104
+ - Traffic demanded by users: 41364.6222 Mbps
+ - Backhaul to: Transmitter 11 cell 3
+ - Backhaul to coordinates: 37.1695 , -3.6048
+
+Name: UMI umi_coverage 10
+ - Location: 37.17 , -3.6046
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 97
+ - Traffic demanded by users: 37192.9315 Mbps
+ - Backhaul to: Transmitter 11 cell 3
+ - Backhaul to coordinates: 37.1695 , -3.6048
+
+Name: UMI umi_coverage 11
+ - Location: 37.1727 , -3.6046
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 24
+ - Traffic demanded by users: 9882.9132 Mbps
+ - Backhaul to: Transmitter 11 cell 3
+ - Backhaul to coordinates: 37.1695 , -3.6048
+
+Name: UMI umi_coverage 12
+ - Location: 37.1606 , -3.6017
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 196
+ - Traffic demanded by users: 76869.3948 Mbps
+ - Backhaul to: Transmitter 3 cell 3
+ - Backhaul to coordinates: 37.1616 , -3.6043
+
+Name: UMI umi_coverage 13
+ - Location: 37.1633 , -3.6017
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 59
+ - Traffic demanded by users: 23367.706 Mbps
+ - Backhaul to: Transmitter 3 cell 3
+ - Backhaul to coordinates: 37.1616 , -3.6043
+
+Name: UMI umi_coverage 14
+ - Location: 37.166 , -3.6017
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 17
+ - Traffic demanded by users: 5959.5357 Mbps
+ - Backhaul to: Transmitter 8 cell 3
+ - Backhaul to coordinates: 37.1678 , -3.598
+
+Name: UMI umi_coverage 15
+ - Location: 37.1687 , -3.6017
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 74
+ - Traffic demanded by users: 24897.5351 Mbps
+ - Backhaul to: Transmitter 11 cell 3
+ - Backhaul to coordinates: 37.1695 , -3.6048
+
+Name: UMI umi_coverage 16
+ - Location: 37.1714 , -3.6017
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 72
+ - Traffic demanded by users: 26362.9258 Mbps
+ - Backhaul to: Transmitter 11 cell 3
+ - Backhaul to coordinates: 37.1695 , -3.6048
+
+Name: UMI umi_coverage 17
+ - Location: 37.1741 , -3.6017
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 193
+ - Traffic demanded by users: 68626.7602 Mbps
+ - Backhaul to: Transmitter 14 cell 3
+ - Backhaul to coordinates: 37.1741 , -3.598
+
+Name: UMI umi_coverage 18
+ - Location: 37.162 , -3.5987
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 92
+ - Traffic demanded by users: 35072.3672 Mbps
+ - Backhaul to: Transmitter 4 cell 3
+ - Backhaul to coordinates: 37.1626 , -3.598
+
+Name: UMI umi_coverage 19
+ - Location: 37.1647 , -3.5987
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 63
+ - Traffic demanded by users: 24756.6101 Mbps
+ - Backhaul to: Transmitter 4 cell 3
+ - Backhaul to coordinates: 37.1626 , -3.598
+
+Name: UMI umi_coverage 20
+ - Location: 37.1673 , -3.5987
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 55
+ - Traffic demanded by users: 20066.038 Mbps
+ - Backhaul to: Transmitter 8 cell 3
+ - Backhaul to coordinates: 37.1678 , -3.598
+
+Name: UMI umi_coverage 21
+ - Location: 37.17 , -3.5987
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 81
+ - Traffic demanded by users: 26066.6251 Mbps
+ - Backhaul to: Transmitter 10 cell 3
+ - Backhaul to coordinates: 37.1695 , -3.598
+
+Name: UMI umi_coverage 22
+ - Location: 37.1727 , -3.5987
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 113
+ - Traffic demanded by users: 40920.15 Mbps
+ - Backhaul to: Transmitter 14 cell 3
+ - Backhaul to coordinates: 37.1741 , -3.598
+
+Name: UMI umi_coverage 23
+ - Location: 37.1606 , -3.5958
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 131
+ - Traffic demanded by users: 50544.6509 Mbps
+ - Backhaul to: Transmitter 2 cell 3
+ - Backhaul to coordinates: 37.1603 , -3.598
+
+Name: UMI umi_coverage 24
+ - Location: 37.1633 , -3.5958
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 57
+ - Traffic demanded by users: 19714.159 Mbps
+ - Backhaul to: Transmitter 4 cell 3
+ - Backhaul to coordinates: 37.1626 , -3.598
+
+Name: UMI umi_coverage 25
+ - Location: 37.166 , -3.5958
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 214
+ - Traffic demanded by users: 82071.6374 Mbps
+ - Backhaul to: Transmitter 8 cell 3
+ - Backhaul to coordinates: 37.1678 , -3.598
+
+Name: UMI umi_coverage 26
+ - Location: 37.1687 , -3.5958
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 79
+ - Traffic demanded by users: 24721.8055 Mbps
+ - Backhaul to: Transmitter 13 cell 3
+ - Backhaul to coordinates: 37.171 , -3.5958
+
+Name: UMI umi_coverage 27
+ - Location: 37.1714 , -3.5958
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 218
+ - Traffic demanded by users: 79734.7145 Mbps
+ - Backhaul to: Transmitter 13 cell 3
+ - Backhaul to coordinates: 37.171 , -3.5958
+
+Name: UMI umi_coverage 28
+ - Location: 37.1741 , -3.5958
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 325
+ - Traffic demanded by users: 112163.7921 Mbps
+ - Backhaul to: Transmitter 14 cell 3
+ - Backhaul to coordinates: 37.1741 , -3.598
+
+Name: UMI umi_coverage 29
+ - Location: 37.162 , -3.5929
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 235
+ - Traffic demanded by users: 92807.5326 Mbps
+ - Backhaul to: Transmitter 7 cell 3
+ - Backhaul to coordinates: 37.1661 , -3.5938
+
+Name: UMI umi_coverage 30
+ - Location: 37.1647 , -3.5929
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 103
+ - Traffic demanded by users: 39884.6791 Mbps
+ - Backhaul to: Transmitter 7 cell 3
+ - Backhaul to coordinates: 37.1661 , -3.5938
+
+Name: UMI umi_coverage 31
+ - Location: 37.1673 , -3.5929
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 25
+ - Traffic demanded by users: 9884.5982 Mbps
+ - Backhaul to: Transmitter 7 cell 3
+ - Backhaul to coordinates: 37.1661 , -3.5938
+
+Name: UMI umi_coverage 32
+ - Location: 37.17 , -3.5929
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 278
+ - Traffic demanded by users: 96605.3939 Mbps
+ - Backhaul to: Transmitter 12 cell 3
+ - Backhaul to coordinates: 37.1704 , -3.5907
+
+Name: UMI umi_coverage 33
+ - Location: 37.1727 , -3.5929
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 244
+ - Traffic demanded by users: 83161.4913 Mbps
+ - Backhaul to: Transmitter 12 cell 3
+ - Backhaul to coordinates: 37.1704 , -3.5907
+
+Name: UMI umi_coverage 34
+ - Location: 37.1606 , -3.59
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 140
+ - Traffic demanded by users: 51859.2023 Mbps
+ - Backhaul to: Transmitter 6 cell 3
+ - Backhaul to coordinates: 37.1661 , -3.5912
+
+Name: UMI umi_coverage 35
+ - Location: 37.1633 , -3.59
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 79
+ - Traffic demanded by users: 30743.4864 Mbps
+ - Backhaul to: Transmitter 6 cell 3
+ - Backhaul to coordinates: 37.1661 , -3.5912
+
+Name: UMI umi_coverage 36
+ - Location: 37.166 , -3.59
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 114
+ - Traffic demanded by users: 40607.316 Mbps
+ - Backhaul to: Transmitter 6 cell 3
+ - Backhaul to coordinates: 37.1661 , -3.5912
+
+Name: UMI umi_coverage 37
+ - Location: 37.1687 , -3.59
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 126
+ - Traffic demanded by users: 45965.4176 Mbps
+ - Backhaul to: Transmitter 12 cell 3
+ - Backhaul to coordinates: 37.1704 , -3.5907
+
+Name: UMI umi_coverage 38
+ - Location: 37.1714 , -3.59
+ - Power: 5 W
+ - Frequency: 16 GHz
+ - Connected users: 88
+ - Traffic demanded by users: 32232.2686 Mbps
+ - Backhaul to: Transmitter 12 cell 3
+ - Backhaul to coordinates: 37.1704 , -3.5907
+
+Name: UMI umi_coverage 39
+ - Location: 37.1741 , -3.59
+ - Power: 5 W
+ - Frequency: 15.9 GHz
+ - Connected users: 18
+ - Traffic demanded by users: 7038.6715 Mbps
+ - Backhaul to: Transmitter 12 cell 3
+ - Backhaul to coordinates: 37.1704 , -3.5907
+
+Name: UMI umi_blind_spot 1
+ - Location: 37.1675 , -3.6039
+ - Power: 3 W
+ - Frequency: 6 GHz
+ - Connected users: 313
+ - Traffic demanded by users: 116322.2152 Mbps
+ - Backhaul to: Transmitter 11 cell 3
+ - Backhaul to coordinates: 37.1695 , -3.6048
+
+Name: UMI umi_blind_spot 2
+ - Location: 37.1722 , -3.5996
+ - Power: 3 W
+ - Frequency: 6 GHz
+ - Connected users: 284
+ - Traffic demanded by users: 95543.9283 Mbps
+ - Backhaul to: Transmitter 14 cell 3
+ - Backhaul to coordinates: 37.1741 , -3.598
+
+Name: UMI umi_blind_spot 3
+ - Location: 37.1676 , -3.5925
+ - Power: 3 W
+ - Frequency: 6 GHz
+ - Connected users: 250
+ - Traffic demanded by users: 88531.3207 Mbps
+ - Backhaul to: Transmitter 7 cell 3
+ - Backhaul to coordinates: 37.1661 , -3.5938
+
+Name: UMI umi_blind_spot 4
+ - Location: 37.1624 , -3.5913
+ - Power: 3 W
+ - Frequency: 6 GHz
+ - Connected users: 407
+ - Traffic demanded by users: 159176.9353 Mbps
+ - Backhaul to: Transmitter 6 cell 3
+ - Backhaul to coordinates: 37.1661 , -3.5912
+
+Name: UMI umi_blind_spot 5
+ - Location: 37.1723 , -3.5891
+ - Power: 3 W
+ - Frequency: 6 GHz
+ - Connected users: 259
+ - Traffic demanded by users: 98423.9582 Mbps
+ - Backhaul to: Transmitter 12 cell 3
+ - Backhaul to coordinates: 37.1704 , -3.5907
+
+Name: UMI umi_blind_spot 6
+ - Location: 37.1634 , -3.5972
+ - Power: 3 W
+ - Frequency: 6 GHz
+ - Connected users: 200
+ - Traffic demanded by users: 73989.6149 Mbps
+ - Backhaul to: Transmitter 4 cell 3
+ - Backhaul to coordinates: 37.1626 , -3.598
+
+Name: UMI umi_blind_spot 7
+ - Location: 37.1624 , -3.604
+ - Power: 3 W
+ - Frequency: 6 GHz
+ - Connected users: 139
+ - Traffic demanded by users: 53611.7354 Mbps
+ - Backhaul to: Transmitter 3 cell 3
+ - Backhaul to coordinates: 37.1616 , -3.6043
+
+Name: UMI umi_blind_spot 8
+ - Location: 37.1729 , -3.605
+ - Power: 3 W
+ - Frequency: 6 GHz
+ - Connected users: 150
+ - Traffic demanded by users: 55683.1843 Mbps
+ - Backhaul to: Transmitter 11 cell 3
+ - Backhaul to coordinates: 37.1695 , -3.6048
+
+Name: UMI umi_blind_spot 9
+ - Location: 37.1731 , -3.5922
+ - Power: 3 W
+ - Frequency: 6 GHz
+ - Connected users: 138
+ - Traffic demanded by users: 52321.9654 Mbps
+ - Backhaul to: Transmitter 12 cell 3
+ - Backhaul to coordinates: 37.1704 , -3.5907
+
+Name: UMI umi_blind_spot 10
+ - Location: 37.1728 , -3.596
+ - Power: 3 W
+ - Frequency: 6 GHz
+ - Connected users: 453
+ - Traffic demanded by users: 156871.6761 Mbps
+ - Backhaul to: Transmitter 13 cell 3
+ - Backhaul to coordinates: 37.171 , -3.5958
+
+
+------- SUMMARY ------- 
+ - Total coverage (UMa + UMi): 89.8198 % (area with SINR > 0 dB)
+ - UMa layer coverage: 84.3243 %
+ - UMi layer coverage: 85.7018 %
+ - Users whose SINR < 0 dB: 1250 out of 15000
+ - Total Network traffic: 4964955.1809 Mbps
+ - Mean traffic per user: 330.997 Mbps
+ - Traffic / area: 1563036.3671 Mbps/Km^2
+ - Total number of UMa: 45
+ - Total number of UMi: 65
