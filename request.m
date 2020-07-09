@@ -143,10 +143,10 @@ end
 %% Results
 disp("Showing final map...");
 
-final_map = siteviewer('Buildings', 'map.osm');
+%map = siteviewer('Buildings', 'map.osm');
 plot_values_map([uma_transmitters umi_transmitters], merged_latitudes, merged_longitudes, merged_grid_size, best_sinr_data);
 show(receivers, 'Icon', 'pins/receiver.png', 'IconSize', [18 18]);
-show_legend(final_map);
+show_legend(map);
 
 %% UMI Backhaul
 disp("Computing backhaul...");
