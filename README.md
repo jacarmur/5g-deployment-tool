@@ -47,7 +47,7 @@ Please, feel free to open any issue, Pull Request or to just fork this project.
 
 ## Author ✒️
 
-* **Francisco J. Quero** - *Trabajo Inicial* - [villanuevand](https://github.com/FranciscoQuero)
+* **Francisco J. Quero** - [FranciscoQuero](https://github.com/FranciscoQuero)
 
 ## License 📄
 
