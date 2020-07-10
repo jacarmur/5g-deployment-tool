@@ -37,10 +37,10 @@ You will see the UI. Just modify the parameters you want and click on "START!"
 
 ## Built with 🛠️
 
-* [Matlab](http://www.dropwizard.io/1.0.2/docs/) - The main language
-* [Python 3](https://maven.apache.org/) - The aux langauge
-* [Open Street Map API](https://rometools.github.io/rome/) - We used this API to retrieve the 3D buildings models
-* [Open Cell ID API](https://rometools.github.io/rome/) - We used this API to retrieve the cells location
+* [Matlab](https://www.mathworks.com/products/matlab.html) - The main language
+* [Python 3](https://www.python.org/downloads/) - The aux langauge
+* [Open Street Map API](https://wiki.openstreetmap.org/wiki/API_v0.6) - We used this API to retrieve the 3D buildings models
+* [Open Cell ID API](http://wiki.opencellid.org/wiki/Main_Page) - We used this API to retrieve the cells location
 
 ## Contribute 🖇️
 Please, feel free to open any issue, Pull Request or to just fork this project.
